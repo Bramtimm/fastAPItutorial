@@ -10,6 +10,11 @@ class UserInfoBase(BaseModel):
 class UserCreate(UserInfoBase):
     password: str
 
+class User(BaseModel):
+    id: int
+    username: str
+    fullname: str
+
 class UserInfo(UserInfoBase):
     id: int
 

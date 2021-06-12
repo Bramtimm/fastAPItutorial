@@ -3,6 +3,7 @@ from sql_app import models, schemas, crud
 from sql_app.database import engine, SessionLocal
 from fastapi import Depends, FastAPI, HTTPException
 from sqlalchemy.orm import Session
+from typing import List
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -27,6 +28,13 @@ def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
         raise HTTPException(status_code=400, detail="Username already registered")
     return crud.create_user(db=db, user=user)
 
+@app.get("/user", response_model=List[schemas.User])
+def get_users(
+        skip: int = 0,
+        limit: int = 10,
+        db: Session = Depends(get_db)):
+    users = crud.get_users(db=db, skip=skip, limit=limit)
+    return users
 
 if __name__ == "__main__":
     uvicorn.run(app, host="127.0.0.1", port=8081)
