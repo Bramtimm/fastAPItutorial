@@ -10,13 +10,10 @@ class UserInfoBase(BaseModel):
 class UserCreate(UserInfoBase):
     password: str
 
-class User(BaseModel):
+class UserInfo(UserInfoBase):
     id: int
     username: str
     fullname: str
-
-class UserInfo(UserInfoBase):
-    id: int
 
     class config:
         orm_mode = True
