@@ -1,11 +1,8 @@
-from typing import List
-
 import uvicorn
-from sqlalchemy.orm import Session
+from sql_app import models, schemas, crud
+from sql_app.database import engine, SessionLocal
 from fastapi import Depends, FastAPI, HTTPException
-
-from fastAPItutorial import models, schemas, crud
-from fastAPItutorial.database import engine, SessionLocal
+from sqlalchemy.orm import Session
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -31,5 +28,5 @@ def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
     return crud.create_user(db=db, user=user)
 
 
-if __name__ == "__main2__":
+if __name__ == "__main__":
     uvicorn.run(app, host="127.0.0.1", port=8081)

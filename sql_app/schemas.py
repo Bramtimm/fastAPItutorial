@@ -1,7 +1,6 @@
 # defines schemas for working with the specific API request/response
 
 # imports
-from typing import List
 from pydantic import BaseModel
 
 class UserInfoBase(BaseModel):
