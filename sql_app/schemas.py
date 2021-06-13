@@ -12,8 +12,6 @@ class UserCreate(UserInfoBase):
 
 class UserInfo(UserInfoBase):
     id: int
-    username: str
-    fullname: str
 
     class config:
         orm_mode = True
