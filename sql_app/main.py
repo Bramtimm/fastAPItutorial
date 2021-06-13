@@ -5,6 +5,7 @@ from fastapi import Depends, FastAPI, HTTPException
 from sqlalchemy.orm import Session
 from typing import List
 
+
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()

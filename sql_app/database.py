@@ -4,8 +4,8 @@
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+from my_connectors import SQL_ALCHEMY_DATABASE_URL
 
-SQL_ALCHEMY_DATABASE_URL = "mysql+mysqlconnector://root:Brommet-7151@localhost:3306/restapi"
 
 engine = create_engine(
     SQL_ALCHEMY_DATABASE_URL,
