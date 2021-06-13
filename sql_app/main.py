@@ -21,14 +21,14 @@ def get_db():
         db.close()
 
 
-@app.post("/users", response_model=schemas.UserInfo)
+@app.post("/users/", response_model=schemas.UserInfo)
 def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
     db_user = crud.get_user_by_username(db, username=user.username)
     if db_user:
         raise HTTPException(status_code=400, detail="Username already registered")
     return crud.create_user(db=db, user=user)
 
-@app.get("/users", response_model=List[schemas.UserInfo])
+@app.get("/users/", response_model=List[schemas.UserInfo])
 def get_users(
         skip: int = 0,
         limit: int = 10,
@@ -49,7 +49,7 @@ def read_user(id: int, db: Session = Depends(get_db)):
 def update_user(id: int,
                 user: schemas.UserCreate,
                 db: Session = Depends(get_db)):
-    return crud.update_user_by_id(db=db, user=user, id=id)
+    return crud.update_user_by_id(db=db, update=user, id=id)
 
 @app.delete("/users/{id}")
 def delete_user(id: int, db: Session = Depends(get_db)):

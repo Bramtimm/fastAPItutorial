@@ -13,5 +13,5 @@ class UserCreate(UserInfoBase):
 class UserInfo(UserInfoBase):
     id: int
 
-    class config:
+    class Config:
         orm_mode = True
